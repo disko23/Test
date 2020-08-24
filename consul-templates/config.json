@@ -1,0 +1,51 @@
+{{/* renderTo: /app/config.json */}}
+
+{
+    "name": "control_replenishment_service",
+    "port": {{ or (env "PORT") "3019" }},
+    "provider": "{{ or (env "PROVIDER") "smstraffic" }}",
+    "log": {
+        "type": "{{ or (env "LOG_TYPE") "console" }}",
+        "filePath": "{{ or (env "LOG_PATH") "logs/log_service" }}",
+        "fileLevel": "{{ or (env "LOG_LEVEL_FILE") "silly" }}",
+        "consoleLevel": "{{ or (env "LOG_LEVEL_CONSOLE") "silly" }}"
+    },
+    "storage": {
+        "dbMaster": {
+            "host": "{{ or (env "STORAGE_MASTER_HOST")}}",
+            "port": {{ or (env "STORAGE_MASTER_PORT")}},
+            "user": "{{ or (env "STORAGE_MASTER_USER")}}",
+            "password": "{{ or (env "STORAGE_MASTER_PASSWORD")}}",
+            "database": "{{ or (env "STORAGE_MASTER_DATABASE")}}"
+        },
+        "dbGame": {
+            "host": "{{ or (env "STORAGE_SLAVE_HOST")}}",
+            "port": {{ or (env "STORAGE_SLAVE_PORT")}},
+            "user": "{{ or (env "STORAGE_SLAVE_USER")}}",
+            "password": "{{ or (env "STORAGE_SLAVE_PASSWORD")}}",
+            "database": "{{ or (env "STORAGE_SLAVE_DATABASE")}}"
+        },
+        "dbSettings": {
+            "host": "{{ or (env "STORAGE_SETTINGS_HOST")}}",
+            "port": {{ or (env "STORAGE_SETTINGS_PORT")}},
+            "user": "{{ or (env "STORAGE_SETTINGS_USER")}}",
+            "password": "{{ or (env "STORAGE_SETTINGS_PASSWORD")}}",
+            "database": "{{ or (env "STORAGE_SETTINGS_DATABASE")}}"
+        }
+    },
+    "redis": {
+        "host": "{{ or (env "REDIS_HOST")}}",
+        "port": {{ or (env "REDIS_PORT")}},
+        "smsChannel": "{{ or (env "REDIS_CHANNEL")}}",
+        "key": "{{ or (env "REDIS_KEY") "controlReplenishment"}}"
+    },
+    "mailer": {
+        "host": "{{ or (env "MAILER_HOST") "mail.bingo-boom.com"}}",
+        "port": {{ or (env "MAILER_PORT") "465"}},
+        "secure": {{ or (env "MAILER_SECURE") "true"}},
+        "auth": {
+            "user": "{{ or (env "MAILER_USER")}}",
+            "pass": "{{ or (env "MAILER_PASSWORD")}}"
+        }
+    }
+}
